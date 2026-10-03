@@ -10,14 +10,12 @@
       --bg: #080b12;
       --bg-2: #101621;
       --panel: #111824;
-      --panel-2: #171f2d;
       --line: #263043;
       --text: #f5f7fb;
       --muted: #9ca8ba;
       --purple: #7c5cff;
       --purple-2: #201a3f;
       --green: #19d3ae;
-      --green-2: #071d1a;
       --shadow: rgba(0,0,0,0.28);
     }
 
@@ -198,12 +196,13 @@
 
     .icon {
       font-size: 42px;
-      background: linear-gradient(135deg, #1f1a38, #0c3540);
       height: 130px;
       border-radius: 11px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(255,255,255,0.03);
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255,255,255,0.04);
     }
 
     .tag {
@@ -313,29 +312,41 @@
     <section id="new">
       <h2>🔥 New Releases</h2>
       <div class="grid">
-        <!-- ADD NEW GAMES HERE -->
-        <!-- Template: Copy this and paste for each game -->
-        <article class="card" data-cat="windows" data-text="your game name description">
-          <div class="icon">🎮</div>
+        <article class="card" data-cat="windows" data-text="Cyberpunk 2077 futuristic action role playing game">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80');"></div>
           <span class="tag">New Release</span>
-          <h3>Game Name</h3>
-          <p>Game description or details (size, version, etc)</p>
-          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
+          <h3>Cyberpunk 2077</h3>
+          <p>Action RPG | 80 GB | Windows 10+ | Full version</p>
+          <a class="download" href="https://example.com/cyberpunk2077.zip" target="_blank">Download</a>
         </article>
-        <!-- END TEMPLATE -->
+
+        <article class="card" data-cat="windows" data-text="VALORANT tactical shooter fps">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80');"></div>
+          <span class="tag">New Release</span>
+          <h3>VALORANT</h3>
+          <p>Tactical Shooter | 20 GB | Windows 10+ | FPS</p>
+          <a class="download" href="https://example.com/valorant.zip" target="_blank">Download</a>
+        </article>
       </div>
     </section>
 
     <section id="windows">
       <h2>🪟 Windows Games</h2>
       <div class="grid">
-        <!-- ADD WINDOWS GAMES HERE -->
-        <article class="card" data-cat="windows" data-text="windows game pc download">
-          <div class="icon">🎮</div>
+        <article class="card" data-cat="windows" data-text="Minecraft sandbox survival build">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=80');"></div>
           <span class="tag">Windows</span>
-          <h3>Game Name</h3>
-          <p>Game description or details</p>
-          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
+          <h3>Minecraft</h3>
+          <p>Sandbox | 1.5 GB | Windows 10+ | Survival</p>
+          <a class="download" href="https://example.com/minecraft.zip" target="_blank">Download</a>
+        </article>
+
+        <article class="card" data-cat="windows" data-text="GTA V open world action">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80');"></div>
+          <span class="tag">Windows</span>
+          <h3>GTA V</h3>
+          <p>Open World | 70 GB | Windows 10+ | Action</p>
+          <a class="download" href="https://example.com/gtav.zip" target="_blank">Download</a>
         </article>
       </div>
     </section>
@@ -343,13 +354,20 @@
     <section id="lowspecs">
       <h2>⚡ Low Specs</h2>
       <div class="grid">
-        <!-- ADD LOW-SPEC GAMES HERE -->
-        <article class="card" data-cat="lowspecs" data-text="low specs game lightweight pc">
-          <div class="icon">⚡</div>
+        <article class="card" data-cat="lowspecs" data-text="Terraria sandbox adventure lightweight">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80');"></div>
           <span class="tag">Low Specs</span>
-          <h3>Game Name</h3>
-          <p>Good for weak or older computers</p>
-          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
+          <h3>Terraria</h3>
+          <p>Low-end friendly | 250 MB | 2D Adventure</p>
+          <a class="download" href="https://example.com/terraria.zip" target="_blank">Download</a>
+        </article>
+
+        <article class="card" data-cat="lowspecs" data-text="Stardew Valley farming simulation">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80');"></div>
+          <span class="tag">Low Specs</span>
+          <h3>Stardew Valley</h3>
+          <p>Farming Simulation | 500 MB | Windows 7+</p>
+          <a class="download" href="https://example.com/stardew.zip" target="_blank">Download</a>
         </article>
       </div>
     </section>
@@ -357,13 +375,12 @@
     <section id="playstation">
       <h2>🎮 PlayStation Emu</h2>
       <div class="grid">
-        <!-- ADD PLAYSTATION RESOURCES HERE -->
-        <article class="card" data-cat="playstation" data-text="playstation emulator resource">
-          <div class="icon">🕹️</div>
+        <article class="card" data-cat="playstation" data-text="PS2 emulator resource">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=900&q=80');"></div>
           <span class="tag">PS Emu</span>
-          <h3>Resource Name</h3>
-          <p>Legal emulator or platform resource</p>
-          <a class="download" href="YOUR_LINK_HERE" target="_blank">Open Link</a>
+          <h3>PS2 Emulator</h3>
+          <p>Legal emulator resource | Setup guide</p>
+          <a class="download" href="https://example.com/ps2emu" target="_blank">Open Link</a>
         </article>
       </div>
     </section>
@@ -371,13 +388,12 @@
     <section id="xbox">
       <h2>🟩 Xbox Emu</h2>
       <div class="grid">
-        <!-- ADD XBOX RESOURCES HERE -->
-        <article class="card" data-cat="xbox" data-text="xbox emulator resource">
-          <div class="icon">🟩</div>
+        <article class="card" data-cat="xbox" data-text="Xbox emulator resource">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=900&q=80');"></div>
           <span class="tag">Xbox Emu</span>
-          <h3>Resource Name</h3>
-          <p>Legal emulator or launch resource</p>
-          <a class="download" href="YOUR_LINK_HERE" target="_blank">Open Link</a>
+          <h3>Xbox Resource</h3>
+          <p>Legal emulator and setup guide</p>
+          <a class="download" href="https://example.com/xboxemu" target="_blank">Open Link</a>
         </article>
       </div>
     </section>
@@ -385,13 +401,20 @@
     <section id="software">
       <h2>🛠️ Software</h2>
       <div class="grid">
-        <!-- ADD SOFTWARE/TOOLS HERE -->
-        <article class="card" data-cat="software" data-text="software utility app download">
-          <div class="icon">💻</div>
+        <article class="card" data-cat="software" data-text="WinRAR archive software utility">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80');"></div>
           <span class="tag">Software</span>
-          <h3>Software Name</h3>
-          <p>Tool or utility description</p>
-          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
+          <h3>WinRAR</h3>
+          <p>Archive Utility | 4 MB | Windows</p>
+          <a class="download" href="https://example.com/winrar.exe" target="_blank">Download</a>
+        </article>
+
+        <article class="card" data-cat="software" data-text="Video editor software">
+          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80');"></div>
+          <span class="tag">Software</span>
+          <h3>Video Editor</h3>
+          <p>Editing Tool | Windows | Creative Suite</p>
+          <a class="download" href="https://example.com/videoeditor.exe" target="_blank">Download</a>
         </article>
       </div>
     </section>
