@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GAMEPH | Download Hub</title>
+  <title>GAMEPH</title>
   <meta name="description" content="GAMEPH game download hub with catalog cards and direct game links." />
   <style>
     :root {
@@ -72,7 +72,7 @@
     .page {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 22px 18px 60px;
+      padding: 24px 18px 60px;
       position: relative;
       z-index: 1;
     }
@@ -134,27 +134,22 @@
       transform: translateY(-1px);
     }
 
-    .name-button {
-      display: block;
-      text-align: center;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.35);
-      background: rgba(0,0,0,0.45);
-      color: var(--text);
-      font-weight: 800;
-      font-size: 15px;
-      letter-spacing: 0.02em;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
-    }
-
     .topbar {
       display: flex;
       align-items: center;
-      gap: 16px;
       justify-content: space-between;
       margin: 8px 0 20px;
       flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f0e9dd;
+      text-shadow: 0 0 22px rgba(255,255,255,0.15);
     }
 
     .search-wrap {
@@ -212,6 +207,7 @@
 <body>
   <div class="page">
     <div class="topbar">
+      <div class="brand">GAMEPH</div>
       <div class="search-wrap">
         <input id="search" class="search" type="text" placeholder="Search games..." />
       </div>
@@ -227,7 +223,7 @@
     </div>
 
     <div class="catalog" id="catalog">
-      <article class="game-card" data-category="windows" data-search="awed sword dark fantasy action">
+      <article class="game-card" data-category="windows" data-search="awoved sword dark fantasy action">
         <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80');"></div>
         <a class="title-link" href="https://example.com/awoved.zip" target="_blank">Awoved</a>
       </article>
