@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BY GAMEPH — Game Download Hub</title>
+<meta name="description" content="BY GAMEKS game download hub">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#080b12;color:#f5f7fb}a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:5;background:#06080ddd;backdrop-filter:blur(12px);border-bottom:1px solid #252d3d}
+nav{max-width:1200px;margin:auto;padding:16px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.logo{font-size:24px;font-weight:900;margin-right:auto}.logo b{color:#7c5cff}
+nav a{padding:9px 11px;border-radius:8px;color:#cbd3df;font-size:12px;font-weight:800}nav a:hover{background:#171e2b;color:white}
+.hero{max-width:1200px;margin:auto;padding:90px 20px 65px;background:radial-gradient(circle at 80% 20%,#4721a844,transparent 35%)}
+.hero small{color:#19d3ae;font-weight:900;letter-spacing:2px}.hero h1{font-size:clamp(44px,8vw,82px);line-height:.95;margin:15px 0}.hero h1 span{color:#7c5cff}.hero p{max-width:650px;color:#9ca8ba;font-size:17px;line-height:1.7}
+.btn{display:inline-block;background:#7c5cff;padding:13px 18px;border-radius:10px;font-weight:900;margin-top:15px}
+main{max-width:1200px;margin:auto;padding:0 20px 70px}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}.search{flex:1;min-width:240px;padding:13px 15px;border-radius:10px;border:1px solid #293244;background:#101621;color:#fff}
+button{padding:10px 13px;border-radius:9px;border:1px solid #293244;background:#101621;color:#cbd3df;font-weight:800;cursor:pointer}button.active,button:hover{background:#7c5cff;color:#fff}
+h2{font-size:30px;margin-top:45px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}.card{background:#111824;border:1px solid #263043;border-radius:15px;padding:18px}.icon{font-size:42px;background:linear-gradient(135deg,#221650,#0c3540);height:130px;border-radius:11px;display:grid;place-items:center}.tag{display:inline-block;margin-top:14px;padding:5px 8px;border-radius:20px;background:#211a40;color:#bcaeff;font-size:10px;font-weight:900}.card h3{margin:10px 0 6px}.card p{color:#9ca8ba;font-size:13px;min-height:40px;line-height:1.5}.download{display:block;text-align:center;background:#19d3ae;color:#06120f;padding:11px;border-radius:9px;font-weight:900;margin-top:14px}
+.notice{margin-top:40px;padding:18px;background:#101621;border:1px solid #263043;border-radius:12px;color:#9ca8ba;font-size:13px;line-height:1.6}footer{text-align:center;border-top:1px solid #252d3d;padding:25px;color:#687487;font-size:12px}
+</style>
+</head>
+<body>
+<header><nav><a class="logo" href="#home"> <b>GAMEPH</b></a>
+<a href="#home">HOME</a><a href="#lowspecs">LOWSPECS</a><a href="#new">NEW RELEASES</a><a href="#windows">WINDOWS GAMES</a><a href="#playstation">PLAYSTATION EMU</a><a href="#xbox">XBOX EMU</a><a href="#software">SOFTWARES</a></nav></header>
+<section class="hero" id="home"><small>🎮 GAME DOWNLOAD HUB</small><h1>PLAY MORE.<br><span>DOWNLOAD MORE.</span></h1><p>Welcome to BY GAMEKS. Browse your game collection, low-spec titles, new releases, emulation resources and software.</p><a class="btn" href="#new">Browse Games ↓</a></section>
+<main>
+<div class="tools"><input id="q" class="search" placeholder="Search games or software..."><button class="active" data-cat="all">ALL</button><button data-cat="windows">WINDOWS</button><button data-cat="lowspecs">LOWSPECS</button><button data-cat="playstation">PS EMU</button><button data-cat="xbox">XBOX EMU</button><button data-cat="software">SOFTWARE</button></div>
+<section id="new"><h2>🔥 New Releases</h2><div class="grid">
+<article class="card" data-cat="windows" data-text="new release windows game"><div class="icon">🔥</div><span class="tag">NEW RELEASE</span><h3>Your New Game</h3><p>Replace this title and description with your game information.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article>
+</div></section>
+<section id="lowspecs"><h2>⚡ Low Specs</h2><div class="grid"><article class="card" data-cat="lowspecs" data-text="low specs game"><div class="icon">⚡</div><span class="tag">LOWSPECS</span><h3>Your Low-Spec Game</h3><p>Games suitable for modest PCs.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article></div></section>
+<section id="windows"><h2>🪟 Windows Games</h2><div class="grid"><article class="card" data-cat="windows" data-text="windows pc game"><div class="icon">🎮</div><span class="tag">WINDOWS</span><h3>Your Windows Game</h3><p>Add the version, size and requirements here.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article></div></section>
+<section id="playstation"><h2>🎮 PlayStation EMU</h2><div class="grid"><article class="card" data-cat="playstation" data-text="playstation emulator"><div class="icon">🕹️</div><span class="tag">PS EMU</span><h3>PlayStation Resource</h3><p>Add a permitted emulator or resource link.</p><a class="download" href="#" onclick="return edit()">OPEN LINK</a></article></div></section>
+<section id="xbox"><h2>🟩 Xbox EMU</h2><div class="grid"><article class="card" data-cat="xbox" data-text="xbox emulator"><div class="icon">🟩</div><span class="tag">XBOX EMU</span><h3>Xbox Resource</h3><p>Add a permitted emulator or resource link.</p><a class="download" href="#" onclick="return edit()">OPEN LINK</a></article></div></section>
+<section id="software"><h2>🛠️ Softwares</h2><div class="grid"><article class="card" data-cat="software" data-text="software utility app"><div class="icon">💻</div><span class="tag">SOFTWARE</span><h3>Your Software</h3><p>Add the official/legal download link.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article></div></section>
+<div class="notice"><b>Download policy:</b> Only link to files you own, have permission to distribute, or that are legally available for redistribution. For commercial games, use an authorized publisher/store download.</div>
+</main><footer>© 2026 BY GAMEKS</footer>
+<script>
+const q=document.querySelector('#q'),cards=[...document.querySelectorAll('.card')],buttons=[...document.querySelectorAll('button')];let cat='all';
+function run(){let s=q.value.toLowerCase();cards.forEach(c=>c.style.display=((cat==='all'||c.dataset.cat===cat)&&(c.dataset.text+' '+c.innerText).toLowerCase().includes(s))?'block':'none')}
+q.oninput=run;buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;run()});
+function edit(){alert('Edit this card in index.html and replace href="#" with your legal download URL.');return false}
+</script></body></html>
