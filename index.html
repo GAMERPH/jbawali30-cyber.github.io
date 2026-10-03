@@ -1,42 +1,419 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BY GAMEPH — Game Download Hub</title>
-<meta name="description" content="BY GAMEKS game download hub">
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#080b12;color:#f5f7fb}a{text-decoration:none;color:inherit}
-header{position:sticky;top:0;z-index:5;background:#06080ddd;backdrop-filter:blur(12px);border-bottom:1px solid #252d3d}
-nav{max-width:1200px;margin:auto;padding:16px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.logo{font-size:24px;font-weight:900;margin-right:auto}.logo b{color:#7c5cff}
-nav a{padding:9px 11px;border-radius:8px;color:#cbd3df;font-size:12px;font-weight:800}nav a:hover{background:#171e2b;color:white}
-.hero{max-width:1200px;margin:auto;padding:90px 20px 65px;background:radial-gradient(circle at 80% 20%,#4721a844,transparent 35%)}
-.hero small{color:#19d3ae;font-weight:900;letter-spacing:2px}.hero h1{font-size:clamp(44px,8vw,82px);line-height:.95;margin:15px 0}.hero h1 span{color:#7c5cff}.hero p{max-width:650px;color:#9ca8ba;font-size:17px;line-height:1.7}
-.btn{display:inline-block;background:#7c5cff;padding:13px 18px;border-radius:10px;font-weight:900;margin-top:15px}
-main{max-width:1200px;margin:auto;padding:0 20px 70px}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}.search{flex:1;min-width:240px;padding:13px 15px;border-radius:10px;border:1px solid #293244;background:#101621;color:#fff}
-button{padding:10px 13px;border-radius:9px;border:1px solid #293244;background:#101621;color:#cbd3df;font-weight:800;cursor:pointer}button.active,button:hover{background:#7c5cff;color:#fff}
-h2{font-size:30px;margin-top:45px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}.card{background:#111824;border:1px solid #263043;border-radius:15px;padding:18px}.icon{font-size:42px;background:linear-gradient(135deg,#221650,#0c3540);height:130px;border-radius:11px;display:grid;place-items:center}.tag{display:inline-block;margin-top:14px;padding:5px 8px;border-radius:20px;background:#211a40;color:#bcaeff;font-size:10px;font-weight:900}.card h3{margin:10px 0 6px}.card p{color:#9ca8ba;font-size:13px;min-height:40px;line-height:1.5}.download{display:block;text-align:center;background:#19d3ae;color:#06120f;padding:11px;border-radius:9px;font-weight:900;margin-top:14px}
-.notice{margin-top:40px;padding:18px;background:#101621;border:1px solid #263043;border-radius:12px;color:#9ca8ba;font-size:13px;line-height:1.6}footer{text-align:center;border-top:1px solid #252d3d;padding:25px;color:#687487;font-size:12px}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GAMEPH | Game Download Hub</title>
+  <meta name="description" content="GAMEPH is a game download hub for Windows games, low-spec titles, emulators, and software." />
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg-2: #101621;
+      --panel: #111824;
+      --panel-2: #171f2d;
+      --line: #263043;
+      --text: #f5f7fb;
+      --muted: #9ca8ba;
+      --purple: #7c5cff;
+      --purple-2: #201a3f;
+      --green: #19d3ae;
+      --green-2: #071d1a;
+      --shadow: rgba(0,0,0,0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(6, 8, 13, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      margin-right: auto;
+      letter-spacing: 1px;
+    }
+
+    .logo b { color: var(--purple); }
+
+    nav a {
+      padding: 9px 11px;
+      border-radius: 8px;
+      color: #cbd3df;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      background: #171e2b;
+      color: #fff;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 90px 20px 65px;
+      background: radial-gradient(circle at 80% 20%, rgba(124, 92, 255, 0.24), transparent 34%);
+    }
+
+    .hero small {
+      color: var(--green);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 8vw, 82px);
+      line-height: 0.95;
+      margin: 15px 0 12px;
+    }
+
+    .hero h1 span { color: var(--purple); }
+
+    .hero p {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--purple);
+      color: #fff;
+      padding: 13px 18px;
+      border-radius: 10px;
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(124, 92, 255, 0.28);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px 70px;
+    }
+
+    .tools {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .search {
+      flex: 1;
+      min-width: 240px;
+      padding: 13px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 13px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      color: #cbd3df;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button.active,
+    button:hover {
+      background: var(--purple);
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-top: 45px;
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 18px;
+      box-shadow: 0 18px 30px var(--shadow);
+    }
+
+    .icon {
+      font-size: 42px;
+      background: linear-gradient(135deg, #1f1a38, #0c3540);
+      height: 130px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 5px 8px;
+      border-radius: 20px;
+      background: var(--purple-2);
+      color: #d8cfff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 10px 0 6px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 13px;
+      min-height: 40px;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .download {
+      display: block;
+      text-align: center;
+      background: var(--green);
+      color: #06120f;
+      padding: 11px;
+      border-radius: 9px;
+      font-weight: 900;
+      margin-top: 14px;
+    }
+
+    .notice {
+      margin-top: 40px;
+      padding: 18px;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      border-top: 1px solid var(--line);
+      padding: 25px;
+      color: #687487;
+      font-size: 12px;
+    }
+
+    @media (max-width: 660px) {
+      nav { justify-content: center; }
+      .logo { margin-right: 0; width: 100%; text-align: center; }
+      .hero { padding-top: 72px; }
+    }
+  </style>
 </head>
 <body>
-<header><nav><a class="logo" href="#home"> <b>GAMEPH</b></a>
-<a href="#home">HOME</a><a href="#lowspecs">LOWSPECS</a><a href="#new">NEW RELEASES</a><a href="#windows">WINDOWS GAMES</a><a href="#playstation">PLAYSTATION EMU</a><a href="#xbox">XBOX EMU</a><a href="#software">SOFTWARES</a></nav></header>
-<section class="hero" id="home"><small>🎮 GAME DOWNLOAD HUB</small><h1>PLAY MORE.<br><span>DOWNLOAD MORE.</span></h1><p>Welcome to BY GAMEKS. Browse your game collection, low-spec titles, new releases, emulation resources and software.</p><a class="btn" href="#new">Browse Games ↓</a></section>
-<main>
-<div class="tools"><input id="q" class="search" placeholder="Search games or software..."><button class="active" data-cat="all">ALL</button><button data-cat="windows">WINDOWS</button><button data-cat="lowspecs">LOWSPECS</button><button data-cat="playstation">PS EMU</button><button data-cat="xbox">XBOX EMU</button><button data-cat="software">SOFTWARE</button></div>
-<section id="new"><h2>🔥 New Releases</h2><div class="grid">
-<article class="card" data-cat="windows" data-text="new release windows game"><div class="icon">🔥</div><span class="tag">NEW RELEASE</span><h3>Your New Game</h3><p>Replace this title and description with your game information.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article>
-</div></section>
-<section id="lowspecs"><h2>⚡ Low Specs</h2><div class="grid"><article class="card" data-cat="lowspecs" data-text="low specs game"><div class="icon">⚡</div><span class="tag">LOWSPECS</span><h3>Your Low-Spec Game</h3><p>Games suitable for modest PCs.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article></div></section>
-<section id="windows"><h2>🪟 Windows Games</h2><div class="grid"><article class="card" data-cat="windows" data-text="windows pc game"><div class="icon">🎮</div><span class="tag">WINDOWS</span><h3>Your Windows Game</h3><p>Add the version, size and requirements here.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article></div></section>
-<section id="playstation"><h2>🎮 PlayStation EMU</h2><div class="grid"><article class="card" data-cat="playstation" data-text="playstation emulator"><div class="icon">🕹️</div><span class="tag">PS EMU</span><h3>PlayStation Resource</h3><p>Add a permitted emulator or resource link.</p><a class="download" href="#" onclick="return edit()">OPEN LINK</a></article></div></section>
-<section id="xbox"><h2>🟩 Xbox EMU</h2><div class="grid"><article class="card" data-cat="xbox" data-text="xbox emulator"><div class="icon">🟩</div><span class="tag">XBOX EMU</span><h3>Xbox Resource</h3><p>Add a permitted emulator or resource link.</p><a class="download" href="#" onclick="return edit()">OPEN LINK</a></article></div></section>
-<section id="software"><h2>🛠️ Softwares</h2><div class="grid"><article class="card" data-cat="software" data-text="software utility app"><div class="icon">💻</div><span class="tag">SOFTWARE</span><h3>Your Software</h3><p>Add the official/legal download link.</p><a class="download" href="#" onclick="return edit()">DOWNLOAD</a></article></div></section>
-<div class="notice"><b>Download policy:</b> Only link to files you own, have permission to distribute, or that are legally available for redistribution. For commercial games, use an authorized publisher/store download.</div>
-</main><footer>© 2026 BY GAMEKS</footer>
-<script>
-const q=document.querySelector('#q'),cards=[...document.querySelectorAll('.card')],buttons=[...document.querySelectorAll('button')];let cat='all';
-function run(){let s=q.value.toLowerCase();cards.forEach(c=>c.style.display=((cat==='all'||c.dataset.cat===cat)&&(c.dataset.text+' '+c.innerText).toLowerCase().includes(s))?'block':'none')}
-q.oninput=run;buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;run()});
-function edit(){alert('Edit this card in index.html and replace href="#" with your legal download URL.');return false}
-</script></body></html>
+  <header>
+    <nav>
+      <a class="logo" href="#home"><b>GAMEPH</b></a>
+      <a href="#home">Home</a>
+      <a href="#lowspecs">Low Specs</a>
+      <a href="#new">New Releases</a>
+      <a href="#windows">Windows</a>
+      <a href="#playstation">PS Emu</a>
+      <a href="#xbox">Xbox Emu</a>
+      <a href="#software">Software</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <small>🎮 Game Download Hub</small>
+    <h1>Play more.<br><span>Download more.</span></h1>
+    <p>Welcome to GAMEPH — your portal for new games, low-spec picks, emulation resources, and useful software. Browse by category and find what works best for your setup.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#new">Browse Games ↓</a>
+      <a class="btn secondary" href="#software">Explore Tools</a>
+    </div>
+  </section>
+
+  <main>
+    <div class="tools">
+      <input id="q" class="search" placeholder="Search games or software..." />
+      <button class="active" data-cat="all">All</button>
+      <button data-cat="windows">Windows</button>
+      <button data-cat="lowspecs">Low Specs</button>
+      <button data-cat="playstation">PS Emu</button>
+      <button data-cat="xbox">Xbox Emu</button>
+      <button data-cat="software">Software</button>
+    </div>
+
+    <section id="new">
+      <h2>🔥 New Releases</h2>
+      <div class="grid">
+        <article class="card" data-cat="windows" data-text="new release windows game arcade action">
+          <div class="icon">🔥</div>
+          <span class="tag">New Release</span>
+          <h3>Your New Game</h3>
+          <p>Replace this title and description with your actual game information.</p>
+          <a class="download" href="#" onclick="return edit()">Download</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="lowspecs">
+      <h2>⚡ Low Specs</h2>
+      <div class="grid">
+        <article class="card" data-cat="lowspecs" data-text="low specs game lightweight pc">
+          <div class="icon">⚡</div>
+          <span class="tag">Low Specs</span>
+          <h3>Your Low-Spec Game</h3>
+          <p>Good choices for weak or older computers.</p>
+          <a class="download" href="#" onclick="return edit()">Download</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="windows">
+      <h2>🪟 Windows Games</h2>
+      <div class="grid">
+        <article class="card" data-cat="windows" data-text="windows game pc download">
+          <div class="icon">🎮</div>
+          <span class="tag">Windows</span>
+          <h3>Your Windows Game</h3>
+          <p>Add the version, size, and compatibility details here.</p>
+          <a class="download" href="#" onclick="return edit()">Download</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="playstation">
+      <h2>🎮 PlayStation Emu</h2>
+      <div class="grid">
+        <article class="card" data-cat="playstation" data-text="playstation emulator resource">
+          <div class="icon">🕹️</div>
+          <span class="tag">PS Emu</span>
+          <h3>PlayStation Resource</h3>
+          <p>Use this section for legal emulator or platform resources.</p>
+          <a class="download" href="#" onclick="return edit()">Open Link</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="xbox">
+      <h2>🟩 Xbox Emu</h2>
+      <div class="grid">
+        <article class="card" data-cat="xbox" data-text="xbox emulator resource">
+          <div class="icon">🟩</div>
+          <span class="tag">Xbox Emu</span>
+          <h3>Xbox Resource</h3>
+          <p>Add a legal emulator, guide, or launch resource here.</p>
+          <a class="download" href="#" onclick="return edit()">Open Link</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="software">
+      <h2>🛠️ Software</h2>
+      <div class="grid">
+        <article class="card" data-cat="software" data-text="software utility app download">
+          <div class="icon">💻</div>
+          <span class="tag">Software</span>
+          <h3>Your Software</h3>
+          <p>Use this card for a legal utility, tool, or app download.</p>
+          <a class="download" href="#" onclick="return edit()">Download</a>
+        </article>
+      </div>
+    </section>
+
+    <div class="notice">
+      <b>Download policy:</b> Only link to files you own, have permission to distribute, or that are legally available for redistribution. If a game is commercial, use the authorized publisher or storefront download link.
+    </div>
+  </main>
+
+  <footer>© 2026 GAMEPH</footer>
+
+  <script>
+    const q = document.querySelector('#q');
+    const cards = [...document.querySelectorAll('.card')];
+    const buttons = [...document.querySelectorAll('button')];
+    let activeCategory = 'all';
+
+    function runFilter() {
+      const term = q.value.toLowerCase();
+      cards.forEach(card => {
+        const text = (card.dataset.text || '') + ' ' + card.innerText;
+        const matchesCategory = activeCategory === 'all' || card.dataset.cat === activeCategory;
+        const matchesText = text.toLowerCase().includes(term);
+        card.style.display = matchesCategory && matchesText ? 'block' : 'none';
+      });
+    }
+
+    q.addEventListener('input', runFilter);
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        activeCategory = button.dataset.cat;
+        runFilter();
+      });
+    });
+
+    function edit() {
+      alert('Edit this card in index.html and replace the download link with your legal URL.');
+      return false;
+    }
+  </script>
+</body>
+</html>
