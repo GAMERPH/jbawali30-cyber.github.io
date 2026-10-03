@@ -3,453 +3,305 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GAMEPH | Game Download Hub</title>
-  <meta name="description" content="GAMEPH is a game download hub for Windows games, low-spec titles, emulators, and software." />
+  <title>GAMEPH | Download Hub</title>
+  <meta name="description" content="GAMEPH game download hub with catalog cards and direct game links." />
   <style>
     :root {
-      --bg: #080b12;
-      --bg-2: #101621;
-      --panel: #111824;
-      --line: #263043;
-      --text: #f5f7fb;
-      --muted: #9ca8ba;
-      --purple: #7c5cff;
-      --purple-2: #201a3f;
-      --green: #19d3ae;
-      --shadow: rgba(0,0,0,0.28);
+      --bg: #090b11;
+      --bg-2: #1a0a0a;
+      --panel: rgba(22, 21, 24, 0.7);
+      --panel-strong: rgba(17, 17, 18, 0.9);
+      --line: rgba(255,255,255,0.15);
+      --text: #f6f4f2;
+      --muted: #d0c8c1;
+      --gold: #f0d78d;
+      --gold-2: #d5a34d;
+      --red: #7a0b0b;
+      --red-2: #b30d0d;
+      --red-3: #d91e1e;
+      --shadow: rgba(0,0,0,0.35);
+      --glow: rgba(182, 22, 22, 0.55);
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 50% 10%, rgba(141,24,24,0.3), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(138, 22, 22, 0.22), transparent 30%),
+        linear-gradient(180deg, #0d0d10, #090b11 60%, #111111 100%);
       color: var(--text);
+      overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(6, 8, 13, 0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,0.015) 0,
+          rgba(255,255,255,0.015) 2px,
+          transparent 2px,
+          transparent 18px
+        );
+      opacity: 0.5;
     }
 
-    nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 16px 20px;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 30%, rgba(124, 14, 14, 0.18), transparent 18%),
+        radial-gradient(circle at 70% 40%, rgba(153, 24, 24, 0.18), transparent 20%),
+        radial-gradient(circle at 40% 80%, rgba(153, 24, 24, 0.16), transparent 18%);
+      mix-blend-mode: screen;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 22px 18px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px 18px;
+      align-items: end;
+      margin-top: 10px;
+    }
+
+    .game-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+      position: relative;
+    }
+
+    .poster {
+      height: 250px;
+      border-radius: 10px 10px 0 0;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.38);
+      border: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poster::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.18));
+    }
+
+    .title-link {
+      display: block;
+      width: 100%;
+      background: rgba(0,0,0,0.42);
+      border: 1px solid rgba(255,255,255,0.38);
+      border-radius: 0 0 10px 10px;
+      padding: 11px 12px;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 15px;
+      line-height: 1.2;
+      text-align: center;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      transition: 0.2s ease;
+      text-transform: none;
+    }
+
+    .title-link:hover {
+      background: rgba(0,0,0,0.6);
+      border-color: rgba(255,255,255,0.6);
+      transform: translateY(-1px);
+    }
+
+    .name-button {
+      display: block;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.45);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .topbar {
       display: flex;
       align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+      margin: 8px 0 20px;
       flex-wrap: wrap;
-      gap: 8px;
     }
 
-    .logo {
-      font-size: 23px;
-      font-weight: 900;
-      margin-right: auto;
-      letter-spacing: 1px;
-    }
-
-    .logo b { color: var(--purple); }
-
-    nav a {
-      padding: 9px 11px;
-      border-radius: 8px;
-      color: #cbd3df;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    nav a:hover {
-      background: #171e2b;
-      color: #fff;
-    }
-
-    .hero {
-      max-width: 1200px;
-      margin: auto;
-      padding: 90px 20px 65px;
-      background: radial-gradient(circle at 80% 20%, rgba(124, 92, 255, 0.24), transparent 34%);
-    }
-
-    .hero small {
-      color: var(--green);
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      font-size: clamp(44px, 8vw, 82px);
-      line-height: 0.95;
-      margin: 15px 0 12px;
-    }
-
-    .hero h1 span { color: var(--purple); }
-
-    .hero p {
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    .hero-actions {
+    .search-wrap {
+      flex: 1;
+      min-width: 240px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--purple);
-      color: #fff;
-      padding: 13px 18px;
-      border-radius: 10px;
-      font-weight: 900;
-      box-shadow: 0 12px 26px rgba(124, 92, 255, 0.28);
-    }
-
-    .btn.secondary {
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--text);
-      box-shadow: none;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px 70px;
-    }
-
-    .tools {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
+      justify-content: center;
     }
 
     .search {
-      flex: 1;
-      min-width: 240px;
-      padding: 13px 15px;
+      width: min(100%, 440px);
+      padding: 12px 16px;
       border-radius: 10px;
-      border: 1px solid var(--line);
-      background: var(--bg-2);
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(17,19,24,0.8);
       color: var(--text);
-      font-size: 14px;
+      font-size: 15px;
       outline: none;
     }
 
-    button {
-      padding: 10px 13px;
-      border-radius: 9px;
-      border: 1px solid var(--line);
-      background: var(--bg-2);
-      color: #cbd3df;
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 8px 0 20px;
+    }
+
+    .filter {
+      background: rgba(17,19,24,0.72);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    button.active,
-    button:hover {
-      background: var(--purple);
-      color: #fff;
-    }
-
-    h2 {
-      font-size: 30px;
-      margin-top: 45px;
-      margin-bottom: 18px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      padding: 18px;
-      box-shadow: 0 18px 30px var(--shadow);
-      transition: 0.2s ease;
-    }
-
-    .card:hover {
-      border-color: var(--purple);
-      box-shadow: 0 18px 30px rgba(124, 92, 255, 0.15);
-    }
-
-    .icon {
-      font-size: 42px;
-      height: 130px;
-      border-radius: 11px;
-      display: grid;
-      place-items: center;
-      background-size: cover;
-      background-position: center;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .tag {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 5px 8px;
-      border-radius: 20px;
-      background: var(--purple-2);
-      color: #d8cfff;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    .card h3 {
-      margin: 10px 0 6px;
-      font-size: 21px;
+    .filter.active,
+    .filter:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.4);
     }
 
-    .card p {
-      color: var(--muted);
-      font-size: 13px;
-      min-height: 40px;
-      line-height: 1.5;
-      margin: 0;
-    }
-
-    .download {
-      display: block;
-      text-align: center;
-      background: var(--green);
-      color: #06120f;
-      padding: 11px;
-      border-radius: 9px;
-      font-weight: 900;
-      margin-top: 14px;
-      transition: 0.2s ease;
-    }
-
-    .download:hover {
-      background: #16c099;
-      transform: translateY(-2px);
-    }
-
-    .notice {
-      margin-top: 40px;
-      padding: 18px;
-      background: var(--bg-2);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    footer {
-      text-align: center;
-      border-top: 1px solid var(--line);
-      padding: 25px;
-      color: #687487;
-      font-size: 12px;
-    }
-
-    @media (max-width: 660px) {
-      nav { justify-content: center; }
-      .logo { margin-right: 0; width: 100%; text-align: center; }
-      .hero { padding-top: 72px; }
+    @media (max-width: 760px) {
+      .page { padding-left: 12px; padding-right: 12px; }
+      .catalog { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+      .poster { height: 220px; }
+      .title-link { font-size: 14px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a class="logo" href="#home"><b>GAMEPH</b></a>
-      <a href="#home">Home</a>
-      <a href="#new">New Releases</a>
-      <a href="#windows">Windows</a>
-      <a href="#lowspecs">Low Specs</a>
-      <a href="#playstation">PS Emu</a>
-      <a href="#xbox">Xbox Emu</a>
-      <a href="#software">Software</a>
-    </nav>
-  </header>
-
-  <section class="hero" id="home">
-    <small>🎮 Game Download Hub</small>
-    <h1>Play more.<br><span>Download more.</span></h1>
-    <p>Welcome to GAMEPH — your portal for new games, low-spec picks, emulation resources, and useful software. Browse by category and find what works best for your setup.</p>
-    <div class="hero-actions">
-      <a class="btn" href="#new">Browse Games ↓</a>
-      <a class="btn secondary" href="#software">Explore Tools</a>
-    </div>
-  </section>
-
-  <main>
-    <div class="tools">
-      <input id="q" class="search" placeholder="Search games or software..." />
-      <button class="active" data-cat="all">All</button>
-      <button data-cat="windows">Windows</button>
-      <button data-cat="lowspecs">Low Specs</button>
-      <button data-cat="playstation">PS Emu</button>
-      <button data-cat="xbox">Xbox Emu</button>
-      <button data-cat="software">Software</button>
+  <div class="page">
+    <div class="topbar">
+      <div class="search-wrap">
+        <input id="search" class="search" type="text" placeholder="Search games..." />
+      </div>
     </div>
 
-    <section id="new">
-      <h2>🔥 New Releases</h2>
-      <div class="grid">
-        <article class="card" data-cat="windows" data-text="Cyberpunk 2077 futuristic action role playing game">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">New Release</span>
-          <h3>Cyberpunk 2077</h3>
-          <p>Action RPG | 80 GB | Windows 10+ | Full version</p>
-          <a class="download" href="https://example.com/cyberpunk2077.zip" target="_blank">Download</a>
-        </article>
-
-        <article class="card" data-cat="windows" data-text="VALORANT tactical shooter fps">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">New Release</span>
-          <h3>VALORANT</h3>
-          <p>Tactical Shooter | 20 GB | Windows 10+ | FPS</p>
-          <a class="download" href="https://example.com/valorant.zip" target="_blank">Download</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="windows">
-      <h2>🪟 Windows Games</h2>
-      <div class="grid">
-        <article class="card" data-cat="windows" data-text="Minecraft sandbox survival build">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">Windows</span>
-          <h3>Minecraft</h3>
-          <p>Sandbox | 1.5 GB | Windows 10+ | Survival</p>
-          <a class="download" href="https://example.com/minecraft.zip" target="_blank">Download</a>
-        </article>
-
-        <article class="card" data-cat="windows" data-text="GTA V open world action">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">Windows</span>
-          <h3>GTA V</h3>
-          <p>Open World | 70 GB | Windows 10+ | Action</p>
-          <a class="download" href="https://example.com/gtav.zip" target="_blank">Download</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="lowspecs">
-      <h2>⚡ Low Specs</h2>
-      <div class="grid">
-        <article class="card" data-cat="lowspecs" data-text="Terraria sandbox adventure lightweight">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">Low Specs</span>
-          <h3>Terraria</h3>
-          <p>Low-end friendly | 250 MB | 2D Adventure</p>
-          <a class="download" href="https://example.com/terraria.zip" target="_blank">Download</a>
-        </article>
-
-        <article class="card" data-cat="lowspecs" data-text="Stardew Valley farming simulation">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">Low Specs</span>
-          <h3>Stardew Valley</h3>
-          <p>Farming Simulation | 500 MB | Windows 7+</p>
-          <a class="download" href="https://example.com/stardew.zip" target="_blank">Download</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="playstation">
-      <h2>🎮 PlayStation Emu</h2>
-      <div class="grid">
-        <article class="card" data-cat="playstation" data-text="PS2 emulator resource">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">PS Emu</span>
-          <h3>PS2 Emulator</h3>
-          <p>Legal emulator resource | Setup guide</p>
-          <a class="download" href="https://example.com/ps2emu" target="_blank">Open Link</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="xbox">
-      <h2>🟩 Xbox Emu</h2>
-      <div class="grid">
-        <article class="card" data-cat="xbox" data-text="Xbox emulator resource">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">Xbox Emu</span>
-          <h3>Xbox Resource</h3>
-          <p>Legal emulator and setup guide</p>
-          <a class="download" href="https://example.com/xboxemu" target="_blank">Open Link</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="software">
-      <h2>🛠️ Software</h2>
-      <div class="grid">
-        <article class="card" data-cat="software" data-text="WinRAR archive software utility">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">Software</span>
-          <h3>WinRAR</h3>
-          <p>Archive Utility | 4 MB | Windows</p>
-          <a class="download" href="https://example.com/winrar.exe" target="_blank">Download</a>
-        </article>
-
-        <article class="card" data-cat="software" data-text="Video editor software">
-          <div class="icon" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80');"></div>
-          <span class="tag">Software</span>
-          <h3>Video Editor</h3>
-          <p>Editing Tool | Windows | Creative Suite</p>
-          <a class="download" href="https://example.com/videoeditor.exe" target="_blank">Download</a>
-        </article>
-      </div>
-    </section>
-
-    <div class="notice">
-      <b>Download policy:</b> Only link to files you own, have permission to distribute, or that are legally available for redistribution. If a game is commercial, use the authorized publisher or storefront download link.
+    <div class="filter-row">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="windows">Windows</button>
+      <button class="filter" data-filter="lowspecs">Low Specs</button>
+      <button class="filter" data-filter="playstation">PS Emu</button>
+      <button class="filter" data-filter="xbox">Xbox Emu</button>
+      <button class="filter" data-filter="software">Software</button>
     </div>
-  </main>
 
-  <footer>© 2026 GAMEPH</footer>
+    <div class="catalog" id="catalog">
+      <article class="game-card" data-category="windows" data-search="awed sword dark fantasy action">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/awoved.zip" target="_blank">Awoved</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="plague tale requiem survival horror">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/plague-tale-requiem.zip" target="_blank">A Plague Tale: Requiem</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="alan wake 2 psychological horror">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/alan-wake-2.zip" target="_blank">Alan Wake 2</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="a way out co-op action adventure">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/a-way-out.zip" target="_blank">A Way Out</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="valhalla viking action">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/valhalla.zip" target="_blank">Valhalla</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="assassins creed rogue stealth action">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/assassins-creed-rogue.zip" target="_blank">Assassin's Creed Rogue</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="assassins creed origins adventure">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/assassins-creed-origins.zip" target="_blank">Assassin's Creed Origins</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="assassins creed syndicate stealth action">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/assassins-creed-syndicate.zip" target="_blank">Assassin's Creed Syndicate</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="assassins creed odyssey stealth action">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/assassins-creed-odyssey.zip" target="_blank">Assassin's Creed Odyssey</a>
+      </article>
+
+      <article class="game-card" data-category="windows" data-search="assassins creed black flag action pirate">
+        <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1528819622761-6bcf0325d1e2?auto=format&fit=crop&w=900&q=80');"></div>
+        <a class="title-link" href="https://example.com/assassins-creed-black-flag.zip" target="_blank">Assassin's Creed Black Flag</a>
+      </article>
+    </div>
+  </div>
 
   <script>
-    const q = document.querySelector('#q');
-    const cards = [...document.querySelectorAll('.card')];
-    const buttons = [...document.querySelectorAll('button')];
-    let activeCategory = 'all';
+    const searchInput = document.getElementById('search');
+    const filterButtons = [...document.querySelectorAll('.filter')];
+    const cards = [...document.querySelectorAll('.game-card')];
+    let currentFilter = 'all';
 
-    function runFilter() {
-      const term = q.value.toLowerCase();
+    function applyFilters() {
+      const term = searchInput.value.trim().toLowerCase();
+
       cards.forEach(card => {
-        const text = (card.dataset.text || '') + ' ' + card.innerText;
-        const matchesCategory = activeCategory === 'all' || card.dataset.cat === activeCategory;
-        const matchesText = text.toLowerCase().includes(term);
-        card.style.display = matchesCategory && matchesText ? 'block' : 'none';
+        const belongs = currentFilter === 'all' || card.dataset.category === currentFilter;
+        const matches = !term || (card.dataset.search + ' ' + card.textContent).toLowerCase().includes(term);
+        card.style.display = belongs && matches ? 'flex' : 'none';
       });
     }
 
-    q.addEventListener('input', runFilter);
+    searchInput.addEventListener('input', applyFilters);
 
-    buttons.forEach(button => {
+    filterButtons.forEach(button => {
       button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        activeCategory = button.dataset.cat;
-        runFilter();
+        currentFilter = button.dataset.filter;
+        filterButtons.forEach(btn => btn.classList.toggle('active', btn === button));
+        applyFilters();
       });
     });
   </script>
