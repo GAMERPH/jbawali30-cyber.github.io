@@ -188,6 +188,12 @@
       border-radius: 15px;
       padding: 18px;
       box-shadow: 0 18px 30px var(--shadow);
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--purple);
+      box-shadow: 0 18px 30px rgba(124, 92, 255, 0.15);
     }
 
     .icon {
@@ -235,6 +241,12 @@
       border-radius: 9px;
       font-weight: 900;
       margin-top: 14px;
+      transition: 0.2s ease;
+    }
+
+    .download:hover {
+      background: #16c099;
+      transform: translateY(-2px);
     }
 
     .notice {
@@ -268,9 +280,9 @@
     <nav>
       <a class="logo" href="#home"><b>GAMEPH</b></a>
       <a href="#home">Home</a>
-      <a href="#lowspecs">Low Specs</a>
       <a href="#new">New Releases</a>
       <a href="#windows">Windows</a>
+      <a href="#lowspecs">Low Specs</a>
       <a href="#playstation">PS Emu</a>
       <a href="#xbox">Xbox Emu</a>
       <a href="#software">Software</a>
@@ -301,12 +313,29 @@
     <section id="new">
       <h2>🔥 New Releases</h2>
       <div class="grid">
-        <article class="card" data-cat="windows" data-text="new release windows game arcade action">
-          <div class="icon">🔥</div>
+        <!-- ADD NEW GAMES HERE -->
+        <!-- Template: Copy this and paste for each game -->
+        <article class="card" data-cat="windows" data-text="your game name description">
+          <div class="icon">🎮</div>
           <span class="tag">New Release</span>
-          <h3>Your New Game</h3>
-          <p>Replace this title and description with your actual game information.</p>
-          <a class="download" href="#" onclick="return edit()">Download</a>
+          <h3>Game Name</h3>
+          <p>Game description or details (size, version, etc)</p>
+          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
+        </article>
+        <!-- END TEMPLATE -->
+      </div>
+    </section>
+
+    <section id="windows">
+      <h2>🪟 Windows Games</h2>
+      <div class="grid">
+        <!-- ADD WINDOWS GAMES HERE -->
+        <article class="card" data-cat="windows" data-text="windows game pc download">
+          <div class="icon">🎮</div>
+          <span class="tag">Windows</span>
+          <h3>Game Name</h3>
+          <p>Game description or details</p>
+          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
         </article>
       </div>
     </section>
@@ -314,25 +343,13 @@
     <section id="lowspecs">
       <h2>⚡ Low Specs</h2>
       <div class="grid">
+        <!-- ADD LOW-SPEC GAMES HERE -->
         <article class="card" data-cat="lowspecs" data-text="low specs game lightweight pc">
           <div class="icon">⚡</div>
           <span class="tag">Low Specs</span>
-          <h3>Your Low-Spec Game</h3>
-          <p>Good choices for weak or older computers.</p>
-          <a class="download" href="#" onclick="return edit()">Download</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="windows">
-      <h2>🪟 Windows Games</h2>
-      <div class="grid">
-        <article class="card" data-cat="windows" data-text="windows game pc download">
-          <div class="icon">🎮</div>
-          <span class="tag">Windows</span>
-          <h3>Your Windows Game</h3>
-          <p>Add the version, size, and compatibility details here.</p>
-          <a class="download" href="#" onclick="return edit()">Download</a>
+          <h3>Game Name</h3>
+          <p>Good for weak or older computers</p>
+          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
         </article>
       </div>
     </section>
@@ -340,12 +357,13 @@
     <section id="playstation">
       <h2>🎮 PlayStation Emu</h2>
       <div class="grid">
+        <!-- ADD PLAYSTATION RESOURCES HERE -->
         <article class="card" data-cat="playstation" data-text="playstation emulator resource">
           <div class="icon">🕹️</div>
           <span class="tag">PS Emu</span>
-          <h3>PlayStation Resource</h3>
-          <p>Use this section for legal emulator or platform resources.</p>
-          <a class="download" href="#" onclick="return edit()">Open Link</a>
+          <h3>Resource Name</h3>
+          <p>Legal emulator or platform resource</p>
+          <a class="download" href="YOUR_LINK_HERE" target="_blank">Open Link</a>
         </article>
       </div>
     </section>
@@ -353,12 +371,13 @@
     <section id="xbox">
       <h2>🟩 Xbox Emu</h2>
       <div class="grid">
+        <!-- ADD XBOX RESOURCES HERE -->
         <article class="card" data-cat="xbox" data-text="xbox emulator resource">
           <div class="icon">🟩</div>
           <span class="tag">Xbox Emu</span>
-          <h3>Xbox Resource</h3>
-          <p>Add a legal emulator, guide, or launch resource here.</p>
-          <a class="download" href="#" onclick="return edit()">Open Link</a>
+          <h3>Resource Name</h3>
+          <p>Legal emulator or launch resource</p>
+          <a class="download" href="YOUR_LINK_HERE" target="_blank">Open Link</a>
         </article>
       </div>
     </section>
@@ -366,12 +385,13 @@
     <section id="software">
       <h2>🛠️ Software</h2>
       <div class="grid">
+        <!-- ADD SOFTWARE/TOOLS HERE -->
         <article class="card" data-cat="software" data-text="software utility app download">
           <div class="icon">💻</div>
           <span class="tag">Software</span>
-          <h3>Your Software</h3>
-          <p>Use this card for a legal utility, tool, or app download.</p>
-          <a class="download" href="#" onclick="return edit()">Download</a>
+          <h3>Software Name</h3>
+          <p>Tool or utility description</p>
+          <a class="download" href="YOUR_DOWNLOAD_LINK_HERE" target="_blank">Download</a>
         </article>
       </div>
     </section>
@@ -409,11 +429,6 @@
         runFilter();
       });
     });
-
-    function edit() {
-      alert('Edit this card in index.html and replace the download link with your legal URL.');
-      return false;
-    }
   </script>
 </body>
 </html>
